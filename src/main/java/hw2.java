@@ -132,7 +132,7 @@ public class hw2 {
 
         }
     }
-    //#60
+    //#6
     public static String funcThreeDec(double n1,double n2){
         return "";
     }
