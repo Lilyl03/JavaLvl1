@@ -313,4 +313,28 @@ public class hw2 {
             System.out.println(n1 + " x " + i + " = " + (n1*i));
         }
     }
+	//#15
+	public static void sumOfOdds(){
+        System.out.println("Input number of terms is:");
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int n1 = n;
+        int i =1;
+        int sum = 0;
+        if(n>0){
+            System.out.print("The odd numbers are: ");
+        while(n!=0){
+            sum +=i;
+            System.out.print(i + ", ");
+            i+=2;
+            n--;
+        }
+        System.out.println(" ");
+        System.out.print("The Sum of odd Natural Number up to " +  n1  + " terms is: ");
+        System.out.println(sum);
+    }else{
+        System.out.println("The input must be positive");
+    }
+        
+    }
 }
