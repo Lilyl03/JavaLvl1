@@ -1,4 +1,4 @@
-2222import java.util.Scanner;
+import java.util.Scanner;
 
 public class hw2 {
     public static void main(String[] args) {
