@@ -285,4 +285,21 @@ public class hw2 {
         System.out.println("The sum of 5 no is : " + (n1+n2+n3+n4+n5));
         System.out.println("The Average is :" + (double)(n1+n2+n3+n4+n5)/5);
     }
+	//#13
+	  public static void funcCube(){
+          System.out.println("Input number of terms :"); 
+          Scanner input = new Scanner(System.in);
+          int n = input.nextInt();
+          if(n>0){
+              for(int i =1; i<= n; i++){
+                  System.out.println("Number is : " + i + " and cube of " + i + " is: " + (i*i*i));
+              }
+          }else if(n<0){
+              for(int i = n; i<0; i++){
+                  System.out.println("Number is : " + i + " and cube of " + i + " is: " + (i*i*i));
+              }
+          }else{
+              System.out.println("Number is : 0 and cube of 0 is : 0");
+          }
+        }
 }
