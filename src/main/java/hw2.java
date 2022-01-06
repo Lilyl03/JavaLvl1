@@ -302,4 +302,15 @@ public class hw2 {
               System.out.println("Number is : 0 and cube of 0 is : 0");
           }
         }
+	//#14
+	public static void multOfGiven(){
+        System.out.println("Input the number (Table to be calculated) :");
+        Scanner input = new Scanner(System.in);
+        int n1 = input.nextInt();
+        System.out.println("Input number of terms : ");
+        int n2 = input.nextInt();
+        for(int i=0; i<=n2;i++){
+            System.out.println(n1 + " x " + i + " = " + (n1*i));
+        }
+    }
 }
