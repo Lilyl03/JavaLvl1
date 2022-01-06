@@ -337,4 +337,20 @@ public class hw2 {
     }
         
     }
+	//#16
+	public static void rightAngleTriangle(){
+        System.out.println("Input number of rows :");
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        if(n>0){
+            String str = "";
+            for(int i = 1 ; i<=n;i++){
+                str += i;
+                System.out.println(str);
+            }
+            
+        }else{
+            System.out.println("Number must be positive");
+        }
+    }
 }
