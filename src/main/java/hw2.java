@@ -1,13 +1,15 @@
-import java.util.Scanner;
+2222import java.util.Scanner;
 
 public class hw2 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int weekday = input.nextInt();
-        System.out.println(funcDayOfWeek(weekday));
+        
     }
     //#1
-    public static String funcWeird(int n){
+    public static String funcWeird(){
+         System.out.println("Input a number:");
+         Scanner input = new Scanner(System.in);
+         int n = input.nextInt();
+         
         if(n<=0){
             return "n is not positive";
         }else{
@@ -22,13 +24,21 @@ public class hw2 {
         }}
     }
     //#2
-    public static void func10Multiplies(int n){
+    public static void func10Multiplies(){
+        System.out.println("Input a number:");
+        Scanner input = new Scanner(System.in);
+         int n = input.nextInt();
         for(int i = 1; i<=10;i++){
             System.out.println(n + " x " + i + " = " + (n*i));
         }
     }
     //#3
-    public static void funcQuadratic(double a , double b, double c){
+    public static void funcQuadratic(){
+        System.out.println("Input number:");
+        Scanner input = new Scanner(System.in);
+        double a = input.nextDouble();
+        double b = input.nextDouble();
+        double c = input.nextDouble();
         double d = (b * b)- (4*a*c);
         if(d>0){
         double sqrtd = Math.sqrt(d);
@@ -54,7 +64,10 @@ public class hw2 {
 
     }
     //#4
-    public static void funcNegOrPos(double n){
+    public static void funcNegOrPos(){
+        System.out.println("Input a number:");
+        Scanner input = new Scanner(System.in);
+        double n = input.nextDouble();
         int n0 = (int)n;
         int n1;
         if(n-n0==0){
@@ -111,7 +124,10 @@ public class hw2 {
     }
 
     //#5
-    public static String funcDayOfWeek(int n){
+    public static String funcDayOfWeek(){
+        System.out.println("Input a number:");
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
         switch (n){
             case 1 :
                 return "Monday";
@@ -133,7 +149,11 @@ public class hw2 {
         }
     }
     //#6
-    public static String funcSameOrDifer(double n1,double n2){
+    public static String funcSameOrDifer(){
+        System.out.println("Input number:");
+        Scanner input = new Scanner(System.in);
+        double n1 = input.nextDouble();
+        double n2 = input.nextDouble();
 	    int n11 = (int)(n1*1000);
 	    int n12 = (int)(n2*1000);
 	    int div1,div2;                
@@ -149,7 +169,12 @@ public class hw2 {
 	    return "They are the same";
 	}
 	//#7
-	public static String funcdaysInMonth(int month, int year){
+	public static String funcdaysInMonth(){
+	    System.out.println("Input a month number:");
+        Scanner input = new Scanner(System.in);
+        int month = input.nextInt();
+        System.out.println("Input a year :");
+        int  year = input.nextInt();
 	    switch(month){
 	        case 1:
 	            return "January" + year + " has 31 days";
@@ -183,7 +208,10 @@ public class hw2 {
 	    }
 	}
 	//#8
-	public static String funcCheckChar(String char1){
+	public static String funcCheckChar(){
+	    System.out.println("Input an alphabet:");
+	    Scanner input = new Scanner(System.in);
+	    String char1 = input.nextLine();
 	    if(char1.length() == 1){
 	        if((char1.codePointAt(0)>=65 && char1.codePointAt(0)<=90) || (char1.codePointAt(0)>=97 && char1.codePointAt(0)<=122)){
 	            char1 = char1.toLowerCase();
@@ -197,7 +225,10 @@ public class hw2 {
 	     return "Your input is not a letter";
 	}
 	//#9
-	public static String funcLeapOrNot(int year){
+	public static String funcLeapOrNot(){
+	    System.out.println("Input a year :");
+	    Scanner input = new Scanner(System.in);
+        int  year = input.nextInt();
          if (year % 400 == 0 ||( year % 100 != 0 && year % 4 == 0)){
 	               return  year + " is a leap year";
 	            }
@@ -213,7 +244,10 @@ public class hw2 {
         System.out.println(str.substring(0,str.length()-2)); 
     }
 	//#11
-	public static void funcNTerm(int n){
+	public static void funcNTerm(){
+	    System.out.println("Input a number:");
+	    Scanner input = new Scanner(System.in);
+	    int n = input.nextInt();
         int cnt = 0;
         String str = "";
         if(n>0){
