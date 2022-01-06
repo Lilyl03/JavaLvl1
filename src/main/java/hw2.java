@@ -176,10 +176,24 @@ public class hw2 {
 	            return "October " + year + " has 31 days";
 	       case 11:
 	            return "November " + year + " has 30 days";
-            case 12:
+               case 12:
 	            return "December " + year + " has 31 days";
-            default: 
-                return "This month does not exist";
+               default: 
+                    return "This month does not exist";
 	    }
+	}
+	//#8
+	public static String funcCheckChar(String char1){
+	    if(char1.length() == 1){
+	        if((char1.codePointAt(0)>=65 && char1.codePointAt(0)<=90) || (char1.codePointAt(0)>=97 && char1.codePointAt(0)<=122)){
+	            char1 = char1.toLowerCase();
+	            if(char1 == "a" || char1 == "o" || char1 == "i" || char1 == "u" || char1 == "e"){
+	                return "Input letter is Vowel";
+	            }else{
+	                return "Input letter is Consonant";
+	            }
+	        }
+	    }
+	     return "Your input is not a letter";
 	}
 }
