@@ -133,7 +133,19 @@ public class hw2 {
         }
     }
     //#6
-    public static String funcThreeDec(double n1,double n2){
-        return "";
-    }
+    public static String funcSameOrDifer(double n1,double n2){
+	    int n11 = (int)(n1*1000);
+	    int n12 = (int)(n2*1000);
+	    int div1,div2;                
+	    while(n11!=0){
+	        div1 = n11%10;
+	        div2 = n12%10;
+	        n11 = n11/10;
+	        n12 = n12/10;
+	        if(div1!=div2){
+	            return "They are different";
+	        }
+	    }
+	    return "They are the same";
+	}
 }
