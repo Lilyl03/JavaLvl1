@@ -203,4 +203,13 @@ public class hw2 {
 	            }
 	     return year + " is not a leap year";
     }
+	//#10
+	 public static void natNums10(){
+        String str = "";
+        for(int i=1;i<=10;i++){
+            str += i + ", ";
+        }
+        System.out.println("The first 10 natural numbers are:"); 
+        System.out.println(str.substring(0,str.length()-2)); 
+    }
 }
