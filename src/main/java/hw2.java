@@ -196,4 +196,11 @@ public class hw2 {
 	    }
 	     return "Your input is not a letter";
 	}
+	//#9
+	public static String funcLeapOrNot(int year){
+         if (year % 400 == 0 ||( year % 100 != 0 && year % 4 == 0)){
+	               return  year + " is a leap year";
+	            }
+	     return year + " is not a leap year";
+    }
 }
