@@ -212,4 +212,25 @@ public class hw2 {
         System.out.println("The first 10 natural numbers are:"); 
         System.out.println(str.substring(0,str.length()-2)); 
     }
+	//#11
+	public static void funcNTerm(int n){
+        int cnt = 0;
+        String str = "";
+        if(n>0){
+        for(int i =1; i<=n; i++){
+            cnt+=i;
+            str += i + ", ";
+        }
+        str = str.substring(0,str.length()-2);
+        System.out.println("Input number:");
+        System.out.println(n);
+        System.out.println("The first " + n + " natural numbers are :");
+        System.out.println(str);
+        System.out.println("The Sum of Natural Number upto " + n + " terms :");
+        System.out.println(cnt);
+            
+        }else{
+            System.out.println("n is not a natural number");
+        }
+    }
 }
