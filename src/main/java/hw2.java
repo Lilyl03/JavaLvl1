@@ -229,9 +229,14 @@ public class hw2 {
 	    System.out.println("Input a year :");
 	    Scanner input = new Scanner(System.in);
         int  year = input.nextInt();
-         if (year % 400 == 0 ||( year % 100 != 0 && year % 4 == 0)){
-	               return  year + " is a leap year";
-	            }
+        if(year>0){
+            if (year % 400 == 0 ||( year % 100 != 0 && year % 4 == 0)){
+                return  year + " is a leap year";
+            }
+        }else{
+            return "The inserted year must be positive";
+        }
+
 	     return year + " is not a leap year";
     }
 	//#10
@@ -309,9 +314,14 @@ public class hw2 {
         int n1 = input.nextInt();
         System.out.println("Input number of terms : ");
         int n2 = input.nextInt();
-        for(int i=0; i<=n2;i++){
-            System.out.println(n1 + " x " + i + " = " + (n1*i));
+        if(n2>=0){
+            for(int i=0; i<=n2;i++){
+                System.out.println(n1 + " x " + i + " = " + (n1*i));
+            }
+        }else{
+            System.out.println("The term can't be negative");
         }
+
     }
 	//#15
 	public static void sumOfOdds(){
