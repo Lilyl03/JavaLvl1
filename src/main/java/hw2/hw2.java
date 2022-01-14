@@ -4,6 +4,22 @@ import java.util.Scanner;
 
 public class hw2 {
     public static void main(String[] args) {
+        func10Multiplies();
+        funcCheckChar();
+        funcWeird();
+        funcNegOrPos();
+        funcCube();
+        funcDayOfWeek();
+        funcQuadratic();
+        funcSameOrDifer();
+        funcSumAndAver();
+        funcNTerm();
+        multOfGiven();
+        sumOfOdds();
+        rightAngleTriangle();
+        natNums10();
+        funcLeapOrNot();
+
         
     }
     //#1
@@ -17,9 +33,9 @@ public class hw2 {
         }else{
         if(n % 2 != 0){
             return "Weird";
-        }else if(n >= 2 && n <= 5){
+        }else if( n <= 5){
             return "Not Weird";
-        }else if(n >= 6 && n <= 20){
+        }else if(n <= 20){
             return "Weird";
         }else{
             return "Not Weird";
