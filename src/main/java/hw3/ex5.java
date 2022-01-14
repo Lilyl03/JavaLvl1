@@ -1,5 +1,7 @@
 package hw3;
 
+import java.util.Scanner;
+
 public class ex5 {
   	public static void main(String[] args) {
 	  int[] arr = new int[10];
