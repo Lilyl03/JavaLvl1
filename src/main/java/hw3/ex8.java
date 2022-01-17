@@ -1,7 +1,7 @@
 package hw3;
 
 public class ex8 {
-  public static void main(String[] args) {
+ public static void main(String[] args) {
         char ship = '*';
         char hit = 'x';
         char[][] board = {
@@ -25,6 +25,22 @@ public class ex8 {
         placeShip(board,ship,3);
         placeShip(board,ship,3);
 
+        Scanner input = new Scanner(System.in);
+        for(int i = 0; i< 2;i++){
+        System.out.println("Give the  coordinates for "+ 1 +" block ship");
+        System.out.print("x:" );
+        int x = input.nextInt();
+        System.out.print("y:" );
+        int y = input.nextInt();
+        while((x <=0 || x >=11) && (y <=0 || y >=11)){
+            System.out.println("Wrong Coordinates");
+            System.out.print("x:" );
+            x = input.nextInt();
+            System.out.print("y:" );
+            y = input.nextInt();
+        }
+        board[x][y] = '*';
+        }
         for(char[] rows : board){
             System.out.println(rows);
         }
