@@ -4,21 +4,6 @@ import java.util.Scanner;
 
 public class hw2 {
     public static void main(String[] args) {
-        func10Multiplies();
-        funcCheckChar();
-        funcWeird();
-        funcNegOrPos();
-        funcCube();
-        funcDayOfWeek();
-        funcQuadratic();
-        funcSameOrDifer();
-        funcSumAndAver();
-        funcNTerm();
-        multOfGiven();
-        sumOfOdds();
-        rightAngleTriangle();
-        natNums10();
-        funcLeapOrNot();
 
         
     }
