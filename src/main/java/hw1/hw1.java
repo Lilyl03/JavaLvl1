@@ -3,7 +3,7 @@ package hw1;
 public class hw1 {
     public static void main(String[] args) {
     }
-    //#11
+    //#1
     public static int funcMax(int num1,int num2,int num3){
         int max;
         num1 = Math.abs(num1);
