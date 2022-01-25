@@ -26,12 +26,18 @@ public class CovidTest {
         CovidTest covidTest = new CovidTest();
         covidTest.results = covidTests;
         covidTest.user = users;
-        print(covidTest);
+       // printCovidTest(covidTest);
+        covidTest.print();
     }
-    public static void print(CovidTest covidTest){
+    public static void printCovidTest(CovidTest covidTest){
         for(int i =0; i< covidTest.user.length; i++){
         System.out.println("User name: " + covidTest.user[i].name + " code: " + covidTest.user[i].code + " Covid Test Results: " + covidTest.results[i].positive);
         }
     }
+    public  void print(){
+        for(int i = 0; i  < user.length; i++){
+        user[i].print();
+        System.out.println( " Covid Test Results: " + results[i].positive);
+    }}
 
 }
