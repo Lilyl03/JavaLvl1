@@ -13,7 +13,7 @@ public class UserCreation {
         printUser(users[1]);
         printUser(users[2]);
     }
-    public static User inputUser(String name,int height){
+    public static User createUser(String name,int height){
         User user = new User();
         user.name = name;
         user.height = height;
