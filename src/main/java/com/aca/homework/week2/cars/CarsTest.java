@@ -2,32 +2,36 @@ package com.aca.homework.week2.cars;
 
 public class CarsTest {
     public static void main(String[] args) {
-        int[] years = new int[41];
+        Car[] car = new Car[41];
         Car cars = new Car();
         cars.brand = "Porshe";
         int k = 0;
         for(int i = 1980;i<=2020; i++){
-            years[k] = i;
+            Car cars1 = new Car();
+            cars1.year = i;
+            car[k] = cars1;
             k++;
         }
-        int[] carsAfter2010 = carsAfter2010(years);
+        Car[] carsAfter2010 = carsAfter2010(car);
         printCars(carsAfter2010, cars);
     }
 
-    private static void printCars(int[] carsAfter2010, Car cars) {
-        for(int i : carsAfter2010){
-            System.out.println(cars.brand + " " + i);
+    private static void printCars(Car[] car, Car cars) {
+        for(int i = 0; i < car.length;i++){
+            System.out.println(cars.brand + " " + car[i].year);
         }
     }
 
-    private static int[] carsAfter2010(int[] years) {
-        int[] carsAfter2010 = new int[11];
+    private static Car[] carsAfter2010(Car[] car) {
+        Car[] c = new Car[11];
         int k = 0;
         for(int i = 30; i<=40;i++){
-            carsAfter2010[k] = years[i];
+            Car car1 = new Car();
+            car1.year = car[i].year;
+            c[k] = car1;
             k++;
         }
-        return carsAfter2010;
+        return c;
     }
 
 }
