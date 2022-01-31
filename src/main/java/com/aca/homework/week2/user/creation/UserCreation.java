@@ -3,11 +3,11 @@ package com.aca.homework.week2.user.creation;
 public class UserCreation {
     public static void main(String[] args) {
         User[] users = new User[3];
-        User user = inputUser("Mary", 170);
+        User user = createUser("Mary", 170);
         users[0] = user;
-        user = inputUser("Grace", 169);
+        user = createUser("Grace", 169);
         users[1] = user;
-        user = inputUser("Nicolos",175);
+        user = createUser("Nicolos",175);
         users[2] = user;
         printUser(users[0]);
         printUser(users[1]);
