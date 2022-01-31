@@ -8,10 +8,10 @@ public class SymbolCount {
         System.out.println("Please write a text:");
         String s = new Scanner(System.in).nextLine();
         System.out.println("Please write a symbol");
-        String s1 = new Scanner(System.in).next();
+        char s1 = new Scanner(System.in).next().charAt(0);
         int cnt = 0;
-        for(int i = 1; i< s.length();i++){
-            if(s.substring(i-1,i).equals(s1)){
+        for(int i = 0; i< s.length();i++){
+            if(s.charAt(i) == s1){
                 cnt++;
             }
 
