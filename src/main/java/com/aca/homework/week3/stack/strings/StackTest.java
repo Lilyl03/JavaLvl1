@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class StackTest {
     public static void main(String[] args) {
-        Stack stack = new Stack();
         int cnt = 0;
         String[] strings = new String[10];
         System.out.println("Enter strings for push:");
@@ -21,8 +20,9 @@ public class StackTest {
         }
         System.out.println("Enter the number for pop:");
         int k = input.nextInt();
-        stack.push(strings,cnt);
-        String[] strings1 = stack.pop(k-1);
+        Stack stack = new Stack(cnt,k-1);
+        stack.push(strings);
+        String[] strings1 = stack.pop();
         System.out.println("The poped strings:");
         for(String s: strings1){
             System.out.println(s);
