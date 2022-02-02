@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Exam {
 
    private long[] nums;
-   private int num1;
    private long max;
    private long min;
 
@@ -13,7 +12,7 @@ public class Exam {
        nums = new long[5];
        Scanner input = new Scanner(System.in);
        System.out.println("Enter 5 numbers:");
-       for(int i = 0; i < 5; i++){
+       for(int i = 0; i < nums.length; i++){
             nums[i] = input.nextLong();
        }
 
@@ -23,7 +22,7 @@ public class Exam {
    public void operation(){
        System.out.println("Enter the operation number 1-8:");
        Scanner input = new Scanner(System.in);
-       num1 = input.nextInt();
+       int num1 = input.nextInt();
        while(num1!=8){
            check(num1);
            System.out.println();
@@ -35,7 +34,7 @@ public class Exam {
     public long max(){
            this.max = nums[0];
            for(int i =1; i<nums.length; i++){
-               if(this.max <= nums[i]){
+               if(this.max < nums[i]){
                    this.max = nums[i];
                }
            }
@@ -45,7 +44,7 @@ public class Exam {
     public long min(){
         this.min = nums[0];
         for(int i =1; i<nums.length; i++){
-            if(this.min >= nums[i]){
+            if(this.min > nums[i]){
                 this.min = nums[i];
             }
         }
@@ -53,13 +52,13 @@ public class Exam {
     }
 
     public void multiply(){
-        long[] num2 = new long[5];
-        for(int i = 0; i < 5; i++){
-            num2[i] = nums[i] * nums[i];
+        long[] num2 = new long[nums.length];
+        for(int i = 0; i < nums.length; i++){
+            num2[i] = 2 * nums[i];
 
         };
-        for(int i = 0; i<5; i++){
-            System.out.println(nums[i] + " * " + nums[i] + " = " + num2[i]);
+        for(int i = 0; i< nums.length; i++){
+            System.out.println(nums[i] + " *  2 = " + num2[i]);
         }
     }
 
@@ -76,7 +75,7 @@ public class Exam {
         int n = new Scanner(System.in).nextInt();
         int k = 0;
         while(k == 0){
-            if(n >= 1 && n <=5){
+            if(n >= 1 && n <= nums.length){
                 System.out.println("The " +  n + "-th member " + this.nums[n-1]);
                 break;
             }else{
