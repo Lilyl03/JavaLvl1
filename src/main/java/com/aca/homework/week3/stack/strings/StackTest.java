@@ -22,10 +22,7 @@ public class StackTest {
         int k = input.nextInt();
         Stack stack = new Stack(cnt,k-1);
         stack.push(strings);
-        String[] strings1 = stack.pop();
         System.out.println("The poped strings:");
-        for(String s: strings1){
-            System.out.println(s);
-        }
+        System.out.println(stack.pop());
     }
 }

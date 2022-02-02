@@ -4,16 +4,16 @@ public class Stack {
     private String[] s;
     private int cnt;
     private int popCount;
-    private String[] sPop;
+    private String sPop;
     public Stack(int cnt , int popCount){
         this.cnt = cnt;
         this.popCount = popCount;
     }
-    public String[] pop(){
+    public String pop(){
         if(popCount < cnt){
-        this.sPop = new String[popCount+1];
+        this.sPop = "";
         for(int i = popCount, l= 0;i>=0 && l<=popCount;i--, l++){
-            this.sPop[l] = s[i];
+            this.sPop += s[i] + '\n';
             this.s[i] = null;
 
         }}else{
