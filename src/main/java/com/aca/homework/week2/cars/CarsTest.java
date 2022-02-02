@@ -5,7 +5,7 @@ public class CarsTest {
         Car[] car = new Car[41];
         for(int i = 1980;i<=2020; i++){
             Car cars = new Car();
-            cars.brand = "Porshe";
+            cars.brand = "Porsche";
             cars.year = i;
             car[i-1980] = cars;
         }
