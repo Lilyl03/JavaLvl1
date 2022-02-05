@@ -1,34 +1,37 @@
 package com.aca.homework.week3.stack.strings;
 
+import java.util.Scanner;
+
 public class Stack {
     private String[] s;
-    private int cnt;
     private int popCount;
-    private String sPop;
-    public Stack(int cnt , int popCount){
-        this.cnt = cnt;
-        this.popCount = popCount;
-    }
-    public String pop(){
-        if(popCount < cnt){
-        this.sPop = "";
-        for(int i = popCount, l= 0;i>=0 && l<=popCount;i--, l++){
-            this.sPop += s[i] + '\n';
-            this.s[i] = null;
 
-        }}else{
+    public void pop() {
+        System.out.println("The poped strings:");
+        if (popCount < s.length) {
+            for (int i = s.length - 1; i >= s.length - popCount; i--) {
+                System.out.println(s[i]);
+            }
+        } else {
             throw new ArrayStoreException("your input is bigger than array");
         }
-        return this.sPop;
+        s = null;
     }
 
-    public void push(String[] s){
-        this.s = new String[this.cnt];
-        for(int i = 0 ; i<this.s.length;i++){
-            if(s[i] != ""){
-                this.s[i] = s[i];
-            }
+    public void push(String s) {
+        this.s = s.split("\n");
+    }
+    public String input(){
+        String strings = "";
+        System.out.println("Enter strings for push:" + '\n' + "(Click Enter twice to end your input)");
+        String l = new Scanner(System.in).nextLine();
+        while(l != ""){
+            strings += l + '\n';
+            l = new Scanner(System.in).nextLine();
         }
+        System.out.println("Enter the number for pop:");
+        this.popCount = new Scanner(System.in).nextInt();
+        return strings;
     }
 
 }
