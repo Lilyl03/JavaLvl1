@@ -13,9 +13,9 @@ public class CarsTest {
         printCars(carsAfter2010);
     }
 
-    private static void printCars(Car[] car ) {
-        for(int i = 0; i < car.length;i++){
-            System.out.println(car[i].brand + " " + car[i].year);
+    private static void printCars(Car[] cars) {
+        for(int i = 0; i < cars.length;i++){
+            System.out.println(cars[i].brand + " " + cars[i].year);
         }
     }
 
@@ -28,10 +28,7 @@ public class CarsTest {
         }
         Car[] c = new Car[k];
         for(int i =car.length-k; i< car.length;i++){
-            Car car1 = new Car();
-            car1.brand = car[i].brand;
-            car1.year = car[i].year;
-            c[car.length-i-1] = car1;
+            c[car.length-i-1] = car[i];
         }
         return c;
     }
