@@ -2,33 +2,32 @@ package com.aca.homework.week4.gun;
 
 public class Gun {
 
-    private int[] cartridge = new int[10];
-    private int t;
+    private int cartridgeCnt;
 
-    public int[] load() {
-        if (cartridge.length > t) {
-            if (cartridge[t] != 1) {
-                cartridge[t] = 1;
-                t++;
-                System.out.println("The carriage is loaded");
-            }
+    public static void main(String[] args) {
+        Gun gun = new Gun();
+        gun.load();
+        gun.load();
+        gun.fire();
+        gun.fire();
+    }
+    public void load() {
+        if (cartridgeCnt < 10) {
+            cartridgeCnt++;
+            System.out.println("The carriage is loaded");
+
         } else {
             System.out.println("The carriage is full");
         }
-        return cartridge;
     }
 
-    public int[] fire() {
+    public void fire() {
 
-        if(t > 0){
-            t--;
-        if (cartridge[t] != 0) {
-            cartridge[t] = 0;
-
+        if(cartridgeCnt > 0){
+            cartridgeCnt--;
             System.out.println("fire!");
-        } }else {
+        }else {
             System.out.println("Out of cartridge");
         }
-        return cartridge;
     }
 }
