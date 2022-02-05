@@ -6,7 +6,7 @@ public class StringProcessor {
     private String json;
 
     public static void main(String[] args) {
-        System.out.println("Please enter a json string:");
+        System.out.println("Please enter a  json string:");
         String key = new Scanner(System.in).nextLine();
         StringProcessor stringProcessor = new StringProcessor(key);
         do {
