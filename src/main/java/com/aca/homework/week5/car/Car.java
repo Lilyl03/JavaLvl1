@@ -14,21 +14,22 @@ public class Car {
         this.weight = weight;
         this.width = width;
     }
-    public Car(){
+
+    public Car() {
 
     }
 
-    public  Car[] createCar() {
+    public Car[] createCar() {
         Car[] cars = new Car[5];
         for (int i = 0; i < cars.length; i++) {
             String brand = getBrand();
             if (brand.equalsIgnoreCase("bmw")) {
                 Car car = new Bmw(getColor(), "bmw", getWidth(), getWeight());
                 cars[i] = car;
-            } else if(brand.equalsIgnoreCase("hyundai")){
+            } else if (brand.equalsIgnoreCase("hyundai")) {
                 Car car = new Hyundai(getColor(), "hyundai", getWidth(), getWeight());
                 cars[i] = car;
-            }else{
+            } else {
                 i--;
             }
         }
@@ -59,8 +60,8 @@ public class Car {
     public String toString() {
         return ")" +
                 "brand =" + brand +
-                ",color = " + color  +
+                ",color = " + color +
                 ", width=" + width +
-                ", weight=" + weight ;
+                ", weight=" + weight;
     }
 }
