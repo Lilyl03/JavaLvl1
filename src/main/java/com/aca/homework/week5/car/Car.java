@@ -25,8 +25,7 @@ public class Car {
             if (brand.equalsIgnoreCase("bmw")) {
                 Car car = new Bmw(getColor(), "bmw", getWidth(), getWeight());
                 cars[i] = car;
-            }
-            if(brand.equalsIgnoreCase("hyundai")){
+            } else if(brand.equalsIgnoreCase("hyundai")){
                 Car car = new Hyundai(getColor(), "hyundai", getWidth(), getWeight());
                 cars[i] = car;
             }else{
@@ -59,8 +58,8 @@ public class Car {
     @Override
     public String toString() {
         return ")" +
-                "color = " + color  +
-                ", brand =" + brand +
+                "brand =" + brand +
+                ",color = " + color  +
                 ", width=" + width +
                 ", weight=" + weight ;
     }

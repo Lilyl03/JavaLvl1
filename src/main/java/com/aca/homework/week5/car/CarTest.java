@@ -8,7 +8,7 @@ public class CarTest {
     }
     public static void print(Car[] cars){
         for(int i = 0; i < cars.length; i++){
-                System.out.println(i+1  + cars[i].toString());
+                System.out.println((i+1)+ ""  + cars[i]);
         }
     }
 }
