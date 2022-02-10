@@ -19,22 +19,7 @@ public class Car {
 
     }
 
-    public Car[] createCar() {
-        Car[] cars = new Car[5];
-        for (int i = 0; i < cars.length; i++) {
-            String brand = getBrand();
-            if (brand.equalsIgnoreCase("bmw")) {
-                Car car = new Bmw(getColor(), "bmw", getWidth(), getWeight());
-                cars[i] = car;
-            } else if (brand.equalsIgnoreCase("hyundai")) {
-                Car car = new Hyundai(getColor(), "hyundai", getWidth(), getWeight());
-                cars[i] = car;
-            } else {
-                i--;
-            }
-        }
-        return cars;
-    }
+
 
     public String getBrand() {
         System.out.println("Enter the brand: ");
