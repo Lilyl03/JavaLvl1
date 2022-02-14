@@ -4,10 +4,7 @@ public class Pixel {
     private int x;
     private int y;
 
-    public Pixel(int x, int y) {
-        setX(x);
-        setY(y);
-    }
+
 
     public void setX(int x) {
         this.x = x;
