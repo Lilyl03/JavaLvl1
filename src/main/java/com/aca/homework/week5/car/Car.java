@@ -15,28 +15,23 @@ public class Car {
         this.width = width;
     }
 
-    public Car() {
 
-    }
-
-
-
-    public String getBrand() {
+    public static String getBrand() {
         System.out.println("Enter the brand: ");
         return new Scanner(System.in).nextLine();
     }
 
-    public String getColor() {
+    public static String getColor() {
         System.out.println("Enter the color: ");
         return new Scanner(System.in).nextLine();
     }
 
-    public long getWidth() {
+    public static long getWidth() {
         System.out.println("Enter the width: ");
         return new Scanner(System.in).nextInt();
     }
 
-    public long getWeight() {
+    public static long getWeight() {
         System.out.println("Enter the weight: ");
         return new Scanner(System.in).nextInt();
     }

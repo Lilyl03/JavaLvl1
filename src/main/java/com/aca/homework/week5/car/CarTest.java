@@ -2,19 +2,18 @@ package com.aca.homework.week5.car;
 
 public class CarTest {
     public static void main(String[] args) {
-        Car car = new Car();
-        print(createCar(car));
+        print(createCar());
 
     }
-    public static  Car[] createCar(Car car) {
+    public static  Car[] createCar() {
         Car[] cars = new Car[5];
         for (int i = 0; i < cars.length; i++) {
-            String brand = car.getBrand();
+            String brand = Car.getBrand();
             if (brand.equalsIgnoreCase("bmw")) {
-                car = new Bmw(car.getColor(), "bmw", car.getWidth(), car.getWeight());
+                Car car = new Bmw(Car.getColor(), Car.getWidth(), Car.getWeight());
                 cars[i] = car;
             } else if (brand.equalsIgnoreCase("hyundai")) {
-                car = new Hyundai(car.getColor(), "hyundai", car.getWidth(), car.getWeight());
+                Car car = new Hyundai(Car.getColor(), Car.getWidth(), Car.getWeight());
                 cars[i] = car;
             } else {
                 i--;
