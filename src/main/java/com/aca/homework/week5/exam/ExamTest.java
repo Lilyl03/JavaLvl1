@@ -10,9 +10,9 @@ public class ExamTest {
     }
 
     public static void main(String[] args) {
-        ExamTest passedExamTest = new PassedExamTest("smart-username", true);
+        ExamTest passedExamTest = new PassedExamTest("smart-username");
         System.out.println(passedExamTest);
-        ExamTest failedExamTest = new FailedExamTest("username1", false);
+        ExamTest failedExamTest = new FailedExamTest("username1");
         System.out.println(failedExamTest);
 
     }
