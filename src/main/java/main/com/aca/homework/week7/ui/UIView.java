@@ -1,7 +1,7 @@
 package com.aca.homework.week7.ui;
 
-public interface UIView {
-    long width = 20;
-    long height = 30;
-    void click();
+public abstract class UIView {
+    long width;
+    long height;
+    public abstract void click();
 }
