@@ -1,6 +1,6 @@
 package com.aca.homework.week6;
 
-public class BufferImplement implements Buffer {
+public class BufferImpl implements Buffer {
     private Object object;
 
     @Override
@@ -30,8 +30,8 @@ public class BufferImplement implements Buffer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof BufferImplement) {
-            BufferImplement that = (BufferImplement) o;
+        if (o instanceof BufferImpl) {
+            BufferImpl that = (BufferImpl) o;
             return object.equals(that.object);
         }
         return false;
