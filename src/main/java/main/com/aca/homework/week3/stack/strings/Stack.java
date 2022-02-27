@@ -1,16 +1,16 @@
 package com.aca.homework.week3.stack.strings;
 
 public class Stack {
-    private String[] stacks = new String[10];
+    private String[] strings = new String[10];
     private int cnt = 0;
     public void push(String string){
-        stacks[cnt] = string;
+        strings[cnt] = string;
         cnt++;
     }
-    public void pop(){
+    public String pop(){
         cnt--;
-        System.out.println(stacks[cnt]);
-        stacks[cnt] = null;
-
+        String popped = strings[cnt];
+        strings[cnt] = null;
+        return popped;
     }
 }
