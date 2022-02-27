@@ -2,6 +2,8 @@ package com.aca.homework.week7.ui;
 
 class UITextTest {
     public static void main(String[] args) {
-        new UIText().click();
+        UIText uiText = new UIText();
+        uiText.ofText("Nice","green",400,500);
+        uiText.click();
     }
 }
