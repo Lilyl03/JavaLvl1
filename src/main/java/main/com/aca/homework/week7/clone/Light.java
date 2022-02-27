@@ -1,17 +1,22 @@
 package com.aca.homework.week7.clone;
 
-public class Light implements Cloneable{
-    private LightState state;
+public class Light implements Cloneable {
+    private final LightState state;
 
-    private Light(LightState state) {
-        this.state = state;
+    private Light(boolean state) {
+        this.state = state ? LightState.ON : LightState.OFF;
     }
-    public static Light create(LightState state){
-        return new Light(state);
+
+    public static Light on() {
+        return new Light(true);
+    }
+
+    public static Light off() {
+        return new Light(false);
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    protected Light clone() throws CloneNotSupportedException {
+        return (Light) super.clone();
     }
 }
