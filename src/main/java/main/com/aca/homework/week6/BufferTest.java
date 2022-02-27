@@ -1,4 +1,4 @@
-package com.aca.homework.week6;
+package main.com.aca.homework.week6;
 
 public class BufferTest {
 
