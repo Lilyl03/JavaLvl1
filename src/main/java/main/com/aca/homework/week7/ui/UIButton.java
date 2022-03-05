@@ -1,11 +1,15 @@
-package com.aca.homework.week7.ui;
+package main.com.aca.homework.week7.ui;
 
 public class UIButton extends UIView {
     private String buttonColor;
+
+    public UIButton(long width, long height, String buttonColor) {
+        super(width, height);
+        this.buttonColor = buttonColor;
+    }
+
     public void ofText(String buttonColor, int height, int width){
         this.buttonColor = buttonColor;
-        setHeight(height);
-        setWidth(width);
     }
     @Override
     public void click() {
