@@ -1,4 +1,4 @@
-package com.aca.homework.week3.covidtest;
+package main.com.aca.homework.homework.week3.covidtest;
 
 public class User {
     String code;

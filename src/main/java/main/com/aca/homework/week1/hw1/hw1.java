@@ -1,4 +1,4 @@
-package com.aca.homework.week1.hw1;
+package main.com.aca.homework.homework.week1.hw1;
 
 public class
 hw1 {

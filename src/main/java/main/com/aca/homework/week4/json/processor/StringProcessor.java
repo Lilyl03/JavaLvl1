@@ -1,4 +1,4 @@
-package com.aca.homework.week4.json.processor;
+package main.com.aca.homework.homework.week4.json.processor;
 
 import java.util.Scanner;
 
