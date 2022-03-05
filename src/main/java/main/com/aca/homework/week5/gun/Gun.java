@@ -1,4 +1,4 @@
-package com.aca.homework.week4.gun;
+package main.com.aca.homework.week5.gun;
 
 public class Gun {
 
