@@ -1,7 +1,7 @@
 package com.aca.homework.week5.abstarct.phone;
 
 public class PhoneService extends AbstractPhoneService{
-    private Phone[] phones = new Phone[4];
+    private final Phone[] phones = new Phone[4];
     private int size;
     @Override
     Phone create(String IMEI, Model model) {

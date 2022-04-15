@@ -1,8 +1,8 @@
 package com.aca.homework.week5.abstarct.phone;
 
 public class Phone {
-    private String IMEI;
-    private Model model;
+    private final String IMEI;
+    private final Model model;
 
     public Phone(String IMEI, Model model){
         this.IMEI = IMEI;

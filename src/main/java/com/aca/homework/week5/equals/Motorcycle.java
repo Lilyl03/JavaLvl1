@@ -1,8 +1,8 @@
 package com.aca.homework.week5.equals;
 
 public class Motorcycle {
-    private Owner owner;
-    private MotorcycleType brand;
+    private final Owner owner;
+    private final MotorcycleType brand;
 
     public Motorcycle(Owner owner, MotorcycleType brand){
         this.owner = owner;

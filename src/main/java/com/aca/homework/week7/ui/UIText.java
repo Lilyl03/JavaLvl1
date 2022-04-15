@@ -1,8 +1,8 @@
 package com.aca.homework.week7.ui;
 
 public class UIText extends UIView {
-    private String value;
-    private String color;
+    private final String value;
+    private final String color;
 
     public UIText(long width, long height, String value, String color) {
         super(width, height);
@@ -12,7 +12,7 @@ public class UIText extends UIView {
 
     @Override
     public void click() {
-        System.out.println("clicked on a text \'" + value + "\' having a color " + color + ", width: " + getWidth() + ", height: " + getHeight());
+        System.out.println("clicked on a text '" + value + "' having a color " + color + ", width: " + getWidth() + ", height: " + getHeight());
     }
 
 

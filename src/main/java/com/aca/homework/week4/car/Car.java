@@ -3,10 +3,10 @@ package com.aca.homework.week4.car;
 import java.util.Scanner;
 
 public class Car {
-    private String color;
-    private String brand;
-    private long width;
-    private long weight;
+    private final String color;
+    private final String brand;
+    private final long width;
+    private final long weight;
 
     public Car(String color, String brand, long width, long weight) {
         this.color = color;
