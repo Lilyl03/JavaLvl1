@@ -10,11 +10,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'junit:junit:4.13.1'
-    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2'
     implementation 'javax.persistence:javax.persistence-api:2.2'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
