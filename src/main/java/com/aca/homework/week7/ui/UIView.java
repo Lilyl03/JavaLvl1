@@ -1,8 +1,8 @@
 package com.aca.homework.week7.ui;
 
 public abstract class UIView {
-    private long width;
-    private long height;
+    private final long width;
+    private final long height;
 
     public UIView(long width, long height) {
         this.width = width;

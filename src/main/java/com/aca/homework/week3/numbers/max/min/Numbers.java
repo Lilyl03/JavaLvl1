@@ -1,9 +1,9 @@
 package com.aca.homework.week3.numbers.max.min;
 
 public class Numbers {
-    private long number1;
-    private long number2;
-    private long number3;
+    private final long number1;
+    private final long number2;
+    private final long number3;
 
     public Numbers(int num1, int num2, int num3) {
         this.number1 = num1;

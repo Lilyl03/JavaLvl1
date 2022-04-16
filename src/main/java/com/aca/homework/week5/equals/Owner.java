@@ -1,8 +1,8 @@
 package com.aca.homework.week5.equals;
 
 public class Owner {
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     public Owner(String firstName, String lastName){
         this.firstName = firstName;

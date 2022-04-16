@@ -3,7 +3,7 @@ package com.aca.homework.week4.json.processor;
 import java.util.Scanner;
 
 public class StringProcessor {
-    private String json;
+    private final String json;
 
     public static void main(String[] args) {
         System.out.println("Please enter a json string:");

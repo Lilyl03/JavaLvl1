@@ -1,8 +1,8 @@
 package com.aca.homework.week6;
 
 public class MyInteger {
-    private int value;
-    private static MyInteger[] myIntegers = new MyInteger[201];
+    private final int value;
+    private static final MyInteger[] myIntegers = new MyInteger[201];
 
     public MyInteger(int value) {
         this.value = value;

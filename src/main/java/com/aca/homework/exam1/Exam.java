@@ -56,7 +56,7 @@ public class Exam {
         for(int i = 0; i < nums.length; i++){
             num2[i] = 2 * nums[i];
 
-        };
+        }
         for(int i = 0; i< nums.length; i++){
             System.out.println(nums[i] + " *  2 = " + num2[i]);
         }
