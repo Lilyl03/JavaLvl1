@@ -11,8 +11,12 @@ public class UserCrudRepository {
         this.connection = connection;
     }
 
-    public User save(User user) throws SQLException {
-        connection.createStatement().execute("insert into users(full_name,age) values ('" + user.getName()+" ', "+ user.getAge()+")");
+    public User save(User user) {
+        try {
+            connection.createStatement().execute("insert into users(full_name,age) values ('" + user.getName()+" ', "+ user.getAge()+")");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return user;
     }
 

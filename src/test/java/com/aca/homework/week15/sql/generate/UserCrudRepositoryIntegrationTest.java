@@ -14,9 +14,11 @@ class UserCrudRepositoryIntegrationTest {
     void testSave(){
         try {
             UserCrudRepository postgres = new UserCrudRepository(DriverManager.getConnection("jdbc:postgresql://127.0.0.1:7432/aca", "postgres", null));
+            postgres.save(new User("John",21));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
 
     }
 
