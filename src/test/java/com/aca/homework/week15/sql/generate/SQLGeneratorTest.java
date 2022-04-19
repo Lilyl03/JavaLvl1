@@ -17,8 +17,12 @@ class SQLGeneratorTest {
     @Test
     void testGenerateInset(){
 
-        Assertions.assertEquals("insert into users (full_name, age) values ('john kehoe', 45);",
-                                        testSubject.generateInsert(new User("john kehoe", 45)));
+        try {
+            Assertions.assertEquals("insert into users (full_name,age) values ('john kehoe',45);",
+                                            testSubject.generateInsert(new User("john kehoe", 45)));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

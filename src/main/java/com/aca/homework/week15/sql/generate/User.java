@@ -1,8 +1,6 @@
 package com.aca.homework.week15.sql.generate;
 
 
-import javax.persistence.Column;
-import javax.persistence.Table;
 
 @Table(name = "users")
 public class User {
