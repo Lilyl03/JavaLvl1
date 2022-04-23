@@ -1,0 +1,17 @@
+ sudo docker exec -it fbb9ef59256f bash
+psql -U postgres
+create table companies(id serial primary key, company_name varchar(255) unique, company_price bigint not null, company_creation_date varchar(255) not null);
+create table users(id serial primary key,username varchar(255) unique not null,first_name varchar(255) not null, last_name varchar(255) not null, company_id int);
+insert into companies(company_name, company_price, company_creation_date) values ('super AI', 456000, '12.04.2005');
+insert into companies(company_name, company_price, company_creation_date) values ('marketAC', 506000, '22.09.2015');
+insert into users(username, first_name,last_name,company_id) values ('jane123','jane', 'mccall', 1);
+insert into users(username, first_name,last_name,company_id) values ('jack456','Jack', 'Johnson', 1);
+insert into users(username, first_name,last_name,company_id) values ('john236','John', 'wick', 1);
+insert into users(username, first_name,last_name,company_id) values ('kim63','Kim', 'Taehyung', 2);
+insert into users(username, first_name,last_name,company_id) values ('paulwk','Paul', 'Walker', 2);
+select company_name from companies;
+select count(*) from companies;
+select first_name from users;
+select us.first_name, us.last_name, co.company_name from companies co inner join users us on co.id = us.company_id;
+select * from users us inner join companies co on co.name = 'superAI' where us.company_id = co.company_id;
+
