@@ -14,6 +14,13 @@ public class ImageServiceImpl implements ImageService {
     private PostRepository postRepository;
     private ImageRepository imageRepository;
     private UserRepository userRepository;
+
+    public ImageServiceImpl(PostRepository postRepository, ImageRepository imageRepository, UserRepository userRepository) {
+        this.postRepository = postRepository;
+        this.imageRepository = imageRepository;
+        this.userRepository = userRepository;
+    }
+
     @Override
     public Image create(CreateImageParams params) {
         Post post = new PostServiceImpl(postRepository,userRepository).getById(params.getPostId());
