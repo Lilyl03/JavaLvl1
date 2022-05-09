@@ -29,6 +29,15 @@ public class PostFacadeImpl implements PostFacade {
     private PostService postService;
     private UserService userService;
 
+    public PostFacadeImpl(ImageRepository imageRepository, UserRepository userRepository, PostRepository postRepository, ImageService imageService, PostService postService, UserService userService) {
+        this.imageRepository = imageRepository;
+        this.userRepository = userRepository;
+        this.postRepository = postRepository;
+        this.imageService = imageService;
+        this.postService = postService;
+        this.userService = userService;
+    }
+
     @Override
     public PostCreationResponseDto create(PostCreationRequestDto dto) {
         if(!userRepository.existsById(dto.getUser_id())){
