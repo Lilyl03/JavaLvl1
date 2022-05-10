@@ -49,11 +49,13 @@ public class PostFacadeImpl implements PostFacade {
 
     @Override
     public ImageCreationResponseDto uploadImage(ImageCreationRequestDto dto) {
-        if(imageRepository.countById(dto.getPostId())>5){
-            throw new RuntimeException("The image upload maximum value is 5");
+        Long count = imageService.count(dto.getPostId());
+        if(count.equals(5L)){
+            throw new RuntimeException("The maximum value is 5");
+        }else {
+            Image image = imageService.create(new CreateImageParams(dto.getBlobId(), dto.getPostId()));
+            return new ImageCreationResponseDto(image.getBlobId());
         }
-        Image image = imageService.create(new CreateImageParams(dto.getBlobId(), dto.getPostId()));
-        return new ImageCreationResponseDto(image.getBlobId());
     }
 
     @Override
