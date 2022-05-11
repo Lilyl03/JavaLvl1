@@ -24,9 +24,9 @@ public class AllUserPostsResponseDto {
 
     @Override
     public String toString() {
-        return "AllUserPostsResponseDto{" +
+        return "AllUserPostsResponseDto{\n" +
                 "user=" + user +
-                ", postAndImages=" + Arrays.toString(postAndImages.toArray()) +
+                "\n " + Arrays.toString(postAndImages.toArray()) +
                 '}';
     }
 }

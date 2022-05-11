@@ -36,8 +36,7 @@ public class PostAndImage {
 
     @Override
     public String toString() {
-        return "PostAndImage{" +
-                "post=" + post +
+        return  post +
                 ", images=" + Arrays.toString(images.toArray()) +
                 '}';
     }

@@ -64,10 +64,9 @@ public class Image {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "\nImage{" +
                 "id=" + id +
-                ", blobId='" + blobId + '\'' +
-                ", post=" + post +
+                ", blobId='" + blobId + '\''+
                 '}';
     }
 }
