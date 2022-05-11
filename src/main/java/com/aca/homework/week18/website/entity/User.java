@@ -1,5 +1,7 @@
 package com.aca.homework.week18.website.entity;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,7 +9,8 @@ import java.util.Objects;
 @Table(name = "USERS")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence")
+    @GeneratedValue(generator = "user_sequence", strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "firstname")
@@ -26,6 +29,10 @@ public class User {
     }
 
     public User(String firstName, String secondName, String username, String password) {
+        Assert.notNull(firstName,"The firstname should not be null");
+        Assert.notNull(secondName,"The secondname should not be null");
+        Assert.notNull(username,"The username should not be null");
+        Assert.notNull(password,"The password should not be null");
         this.firstName = firstName;
         this.secondName = secondName;
         this.username = username;

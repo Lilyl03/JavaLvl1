@@ -1,5 +1,7 @@
 package com.aca.homework.week18.website.service.core.params;
 
+import org.springframework.util.Assert;
+
 import java.util.Objects;
 
 public class CreateImageParams {
@@ -7,6 +9,8 @@ public class CreateImageParams {
     private Long postId;
 
     public CreateImageParams(String blobId, Long postId) {
+        Assert.notNull(blobId,"The blobId should not be null");
+        Assert.notNull(postId,"The postId should not be null");
         this.blobId = blobId;
         this.postId = postId;
     }

@@ -1,17 +1,32 @@
 package com.aca.homework.week18.website.facade.response;
 
-import com.aca.homework.week18.website.entity.Post;
 import com.aca.homework.week18.website.entity.User;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class AllUserPostsResponseDto {
     private User user;
-    private List<Post> posts;
+    private List<PostAndImage> postAndImages;
 
+    public User getUser() {
+        return user;
+    }
 
-    public AllUserPostsResponseDto(User user, List<Post> posts) {
+    public List<PostAndImage> getPostAndImages() {
+        return postAndImages;
+    }
+
+    public AllUserPostsResponseDto(User user, List<PostAndImage> postAndImages) {
         this.user = user;
-        this.posts = posts;
+        this.postAndImages = postAndImages;
+    }
+
+    @Override
+    public String toString() {
+        return "AllUserPostsResponseDto{" +
+                "user=" + user +
+                ", postAndImages=" + Arrays.toString(postAndImages.toArray()) +
+                '}';
     }
 }

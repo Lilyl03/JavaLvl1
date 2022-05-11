@@ -9,6 +9,7 @@ import com.aca.homework.week18.website.facade.request.ImageCreationRequestDto;
 import com.aca.homework.week18.website.facade.request.PostCreationRequestDto;
 import com.aca.homework.week18.website.facade.response.AllUserPostsResponseDto;
 import com.aca.homework.week18.website.facade.response.ImageCreationResponseDto;
+import com.aca.homework.week18.website.facade.response.PostAndImage;
 import com.aca.homework.week18.website.facade.response.PostCreationResponseDto;
 import com.aca.homework.week18.website.repository.ImageRepository;
 import com.aca.homework.week18.website.repository.PostRepository;
@@ -18,7 +19,9 @@ import com.aca.homework.week18.website.service.core.PostService;
 import com.aca.homework.week18.website.service.core.UserService;
 import com.aca.homework.week18.website.service.core.params.CreateImageParams;
 import com.aca.homework.week18.website.service.core.params.CreatePostParams;
+import com.aca.homework.week18.website.service.impl.UserServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostFacadeImpl implements PostFacade {
@@ -60,13 +63,15 @@ public class PostFacadeImpl implements PostFacade {
 
     @Override
     public AllUserPostsResponseDto getAllUserPosts(AllUserPostsRequestDto dto) {
-        User user = userRepository.getById(dto.getUser_id());
+        User user = new UserServiceImpl(userRepository).getById(dto.getUser_id());
         List<Post> allById = postService.getAllById(user.getId());
+        List<PostAndImage> postAndImages = new ArrayList<>();
         for (Post post : allById) {
             List<Image> allByPostId = imageService.getAllByPostId(post.getId());
-            post.setImages(allByPostId);
+            postAndImages.add(new PostAndImage(post,allByPostId));
         }
-        return new AllUserPostsResponseDto(user,allById);
+
+        return new AllUserPostsResponseDto(user,postAndImages);
     }
 
 

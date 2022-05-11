@@ -1,21 +1,18 @@
 package com.aca.homework.week18.website.service.core.params;
 
+import org.springframework.util.Assert;
+
 import java.util.Objects;
 
 public class CreatePostParams {
     private String title;
     private String description;
     private Long userId;
-    private Long imageId;
-
-    public CreatePostParams(String title, String description, Long userId, Long imageId) {
-        this.title = title;
-        this.description = description;
-        this.userId = userId;
-        this.imageId = imageId;
-    }
 
     public CreatePostParams(String title, String description, Long userId) {
+        Assert.notNull(title,"The title should not be null");
+        Assert.notNull(description,"The description should not be null");
+        Assert.notNull(userId,"The userId should not be null");
         this.title = title;
         this.description = description;
         this.userId = userId;
@@ -45,25 +42,18 @@ public class CreatePostParams {
         this.userId = userId;
     }
 
-    public Long getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(Long imageId) {
-        this.imageId = imageId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreatePostParams that = (CreatePostParams) o;
-        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(userId, that.userId) && Objects.equals(imageId, that.imageId);
+        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(userId, that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description, userId, imageId);
+        return Objects.hash(title, description, userId);
     }
 
     @Override
@@ -72,7 +62,6 @@ public class CreatePostParams {
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", userId=" + userId +
-                ", imageId=" + imageId +
                 '}';
     }
 }

@@ -1,5 +1,7 @@
 package com.aca.homework.week18.website.entity;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,17 +9,20 @@ import java.util.Objects;
 @Table(name = "IMAGES")
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "img_sequence", sequenceName = "img_sequence")
+    @GeneratedValue(generator = "img_sequence",strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "blob_id")
+    @Column(name = "blob_id",nullable = false)
     private String blobId;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id", foreignKey = @ForeignKey(name = "FK_IMAGE_POST_ID_ID"))
+    @ManyToOne(fetch=FetchType.EAGER )
+    @JoinColumn(name = "post_id",nullable = false, foreignKey = @ForeignKey(name = "FK_IMAGE_POST_ID_ID"))
     private Post post;
 
     public Image(String blobId, Post post) {
+        Assert.notNull(blobId,"The blobId should not be null");
+        Assert.notNull(post, "The post should not be null");
         this.blobId = blobId;
         this.post = post;
     }

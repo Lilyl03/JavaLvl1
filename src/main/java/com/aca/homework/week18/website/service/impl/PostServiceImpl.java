@@ -30,6 +30,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getById(Long id) {
         Optional<Post> byId = postRepository.findById(id);
+        if(!byId.isPresent()) {
+            throw new RuntimeException("User with such an id doesn't exist");
+        }
         return byId.get();
     }
 
