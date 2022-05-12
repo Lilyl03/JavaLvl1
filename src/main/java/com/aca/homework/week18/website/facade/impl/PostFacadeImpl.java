@@ -20,10 +20,12 @@ import com.aca.homework.week18.website.service.core.UserService;
 import com.aca.homework.week18.website.service.core.params.CreateImageParams;
 import com.aca.homework.week18.website.service.core.params.CreatePostParams;
 import com.aca.homework.week18.website.service.impl.UserServiceImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class PostFacadeImpl implements PostFacade {
     private ImageRepository imageRepository;
     private UserRepository userRepository;

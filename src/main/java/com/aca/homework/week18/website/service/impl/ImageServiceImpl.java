@@ -7,9 +7,11 @@ import com.aca.homework.week18.website.repository.PostRepository;
 import com.aca.homework.week18.website.repository.UserRepository;
 import com.aca.homework.week18.website.service.core.ImageService;
 import com.aca.homework.week18.website.service.core.params.CreateImageParams;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ImageServiceImpl implements ImageService {
     private PostRepository postRepository;
     private ImageRepository imageRepository;

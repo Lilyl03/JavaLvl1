@@ -7,7 +7,9 @@ import com.aca.homework.week18.website.facade.response.UserSignUpResponseDto;
 import com.aca.homework.week18.website.repository.UserRepository;
 import com.aca.homework.week18.website.service.core.UserService;
 import com.aca.homework.week18.website.service.core.params.CreateUserParams;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserFacadeImpl implements UserFacade {
     private UserService userService;
     private UserRepository userRepository;

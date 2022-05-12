@@ -93,11 +93,10 @@ public class Post {
 
     @Override
     public String toString() {
-        return "\nPost{" +
+        return "\n\tPost{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", user=" + user +
                 ", images=" + images +
                 '}';
     }

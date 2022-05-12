@@ -4,9 +4,11 @@ import com.aca.homework.week18.website.entity.User;
 import com.aca.homework.week18.website.repository.UserRepository;
 import com.aca.homework.week18.website.service.core.UserService;
 import com.aca.homework.week18.website.service.core.params.CreateUserParams;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
