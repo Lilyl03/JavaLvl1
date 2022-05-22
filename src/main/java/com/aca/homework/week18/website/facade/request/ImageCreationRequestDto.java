@@ -3,8 +3,8 @@ package com.aca.homework.week18.website.facade.request;
 import java.util.Objects;
 
 public class ImageCreationRequestDto {
-    private Long postId;
-    private String blobId;
+    private final Long postId;
+    private final String blobId;
 
     public ImageCreationRequestDto(Long postId, String blobId) {
         this.postId = postId;
@@ -35,9 +35,6 @@ public class ImageCreationRequestDto {
 
     @Override
     public String toString() {
-        return "ImageCreationRequestDto{" +
-                "postId=" + postId +
-                ", blobId='" + blobId + '\'' +
-                '}';
+        return "ImageCreationRequestDto{" + "postId=" + postId + ", blobId='" + blobId + '\'' + '}';
     }
 }

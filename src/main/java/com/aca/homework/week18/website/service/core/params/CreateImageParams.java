@@ -4,13 +4,14 @@ import org.springframework.util.Assert;
 
 import java.util.Objects;
 
-public class CreateImageParams {
-    private String blobId;
-    private Long postId;
+public final class CreateImageParams {
+    private final String blobId;
+    private final Long postId;
 
     public CreateImageParams(String blobId, Long postId) {
-        Assert.notNull(blobId,"The blobId should not be null");
-        Assert.notNull(postId,"The postId should not be null");
+        Assert.notNull(blobId, "The blobId should not be null");
+        Assert.hasText(blobId, "The blobId should not be empty");
+        Assert.notNull(postId, "The postId should not be null");
         this.blobId = blobId;
         this.postId = postId;
     }
@@ -39,9 +40,6 @@ public class CreateImageParams {
 
     @Override
     public String toString() {
-        return "CreateImageParams{" +
-                "blobId='" + blobId + '\'' +
-                ", postId=" + postId +
-                '}';
+        return "CreateImageParams{" + "blobId='" + blobId + '\'' + ", postId=" + postId + '}';
     }
 }

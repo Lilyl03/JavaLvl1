@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ImageService {
     Image create(CreateImageParams params);
-    Long count(Long id);
+
+    Long countByPostId(Long id);
+
     List<Image> getAllByPostId(Long id);
 }

@@ -6,8 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AllUserPostsResponseDto {
-    private User user;
-    private List<PostAndImage> postAndImages;
+    private final User user;
+    private final List<PostAndImage> postAndImages;
+
+    public AllUserPostsResponseDto(User user, List<PostAndImage> postAndImages) {
+        this.user = user;
+        this.postAndImages = postAndImages;
+    }
 
     public User getUser() {
         return user;
@@ -17,14 +22,8 @@ public class AllUserPostsResponseDto {
         return postAndImages;
     }
 
-    public AllUserPostsResponseDto(User user, List<PostAndImage> postAndImages) {
-        this.user = user;
-        this.postAndImages = postAndImages;
-    }
-
     @Override
     public String toString() {
-        return  user +
-                "," + Arrays.toString(postAndImages.toArray());
+        return user + "," + Arrays.toString(postAndImages.toArray());
     }
 }

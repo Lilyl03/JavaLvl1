@@ -9,6 +9,8 @@ import com.aca.homework.week18.website.facade.response.PostCreationResponseDto;
 
 public interface PostFacade {
     PostCreationResponseDto create(PostCreationRequestDto dto);
+
     ImageCreationResponseDto uploadImage(ImageCreationRequestDto dto);
+
     AllUserPostsResponseDto getAllUserPosts(AllUserPostsRequestDto dto);
 }

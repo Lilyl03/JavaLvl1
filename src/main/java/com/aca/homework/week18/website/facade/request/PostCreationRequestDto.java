@@ -3,9 +3,9 @@ package com.aca.homework.week18.website.facade.request;
 import java.util.Objects;
 
 public class PostCreationRequestDto {
-    private Long user_id;
-    private String title;
-    private String description;
+    private final Long user_id;
+    private final String title;
+    private final String description;
 
     public PostCreationRequestDto(Long user_id, String title, String description) {
         this.user_id = user_id;
@@ -40,10 +40,6 @@ public class PostCreationRequestDto {
 
     @Override
     public String toString() {
-        return "PostCreationRequestDto{" +
-                "user_id=" + user_id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "PostCreationRequestDto{" + "user_id=" + user_id + ", title='" + title + '\'' + ", description='" + description + '\'' + '}';
     }
 }

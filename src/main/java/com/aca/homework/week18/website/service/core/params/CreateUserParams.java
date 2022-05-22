@@ -2,11 +2,11 @@ package com.aca.homework.week18.website.service.core.params;
 
 import java.util.Objects;
 
-public class CreateUserParams {
-    private String firstName;
-    private String secondName;
-    private String username;
-    private String password;
+public final class CreateUserParams {
+    private final String firstName;
+    private final String secondName;
+    private final String username;
+    private final String password;
 
     public CreateUserParams(String firstName, String secondName, String username, String password) {
         this.firstName = firstName;
@@ -19,32 +19,16 @@ public class CreateUserParams {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getSecondName() {
         return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
@@ -62,11 +46,6 @@ public class CreateUserParams {
 
     @Override
     public String toString() {
-        return "CreateUserParams{" +
-                "firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "CreateUserParams{" + "firstName='" + firstName + '\'' + ", secondName='" + secondName + '\'' + ", username='" + username + '\'' + ", password='" + password + '\'' + '}';
     }
 }

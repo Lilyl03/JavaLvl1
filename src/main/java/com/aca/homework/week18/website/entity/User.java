@@ -13,26 +13,26 @@ public class User {
     @GeneratedValue(generator = "user_sequence", strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
-    @Column(name = "secondname")
+    @Column(name = "secondname", nullable = false)
     private String secondName;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     public User() {
     }
 
     public User(String firstName, String secondName, String username, String password) {
-        Assert.notNull(firstName,"The firstname should not be null");
-        Assert.notNull(secondName,"The secondname should not be null");
-        Assert.notNull(username,"The username should not be null");
-        Assert.notNull(password,"The password should not be null");
+        Assert.notNull(firstName, "The firstname should not be null");
+        Assert.notNull(secondName, "The secondname should not be null");
+        Assert.notNull(username, "The username should not be null");
+        Assert.notNull(password, "The password should not be null");
         this.firstName = firstName;
         this.secondName = secondName;
         this.username = username;

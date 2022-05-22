@@ -3,14 +3,14 @@ package com.aca.homework.week18.website.facade.request;
 import java.util.Objects;
 
 public class AllUserPostsRequestDto {
-    private Long user_id;
+    private final Long userId;
 
-    public AllUserPostsRequestDto(Long user_id) {
-        this.user_id = user_id;
+    public AllUserPostsRequestDto(Long userId) {
+        this.userId = userId;
     }
 
     public Long getUser_id() {
-        return user_id;
+        return userId;
     }
 
     @Override
@@ -18,18 +18,16 @@ public class AllUserPostsRequestDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AllUserPostsRequestDto that = (AllUserPostsRequestDto) o;
-        return Objects.equals(user_id, that.user_id);
+        return Objects.equals(userId, that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id);
+        return Objects.hash(userId);
     }
 
     @Override
     public String toString() {
-        return "AllUserPostsRequestDto{" +
-                "user_id=" + user_id +
-                '}';
+        return "AllUserPostsRequestDto{" + "userId=" + userId + '}';
     }
 }

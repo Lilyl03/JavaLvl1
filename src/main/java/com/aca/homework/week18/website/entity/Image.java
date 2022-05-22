@@ -10,24 +10,25 @@ import java.util.Objects;
 public class Image {
     @Id
     @SequenceGenerator(name = "img_sequence", sequenceName = "img_sequence")
-    @GeneratedValue(generator = "img_sequence",strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "img_sequence", strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "blob_id",nullable = false)
+    @Column(name = "blob_id", nullable = false)
     private String blobId;
 
-    @ManyToOne(fetch=FetchType.EAGER )
-    @JoinColumn(name = "post_id",nullable = false, foreignKey = @ForeignKey(name = "FK_IMAGE_POST_ID_ID"))
+    @ManyToOne()
+    @JoinColumn(name = "post_id", nullable = false, foreignKey = @ForeignKey(name = "FK_IMAGE_POST_ID_ID"))
     private Post post;
 
     public Image(String blobId, Post post) {
-        Assert.notNull(blobId,"The blobId should not be null");
+        Assert.notNull(blobId, "The blobId should not be null");
         Assert.notNull(post, "The post should not be null");
         this.blobId = blobId;
         this.post = post;
     }
 
-    public Image() {}
+    public Image() {
+    }
 
     public Long getId() {
         return id;
@@ -64,9 +65,6 @@ public class Image {
 
     @Override
     public String toString() {
-        return "\n\t\tImage{" +
-                "id=" + id +
-                ", blobId='" + blobId + '\'' +
-                '}';
+        return "\nImage{" + "id=" + id + ", blobId='" + blobId + '\'' + ", post=" + post + '}';
     }
 }

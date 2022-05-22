@@ -3,10 +3,10 @@ package com.aca.homework.week18.website.facade.request;
 import java.util.Objects;
 
 public class UserSignUpRequestDto {
-    private String firstName;
-    private String secondName;
-    private String userName;
-    private String password;
+    private final String firstName;
+    private final String secondName;
+    private final String userName;
+    private final String password;
 
     public UserSignUpRequestDto(String firstName, String secondName, String userName, String password) {
         this.firstName = firstName;
@@ -46,11 +46,6 @@ public class UserSignUpRequestDto {
 
     @Override
     public String toString() {
-        return "UserSignUpRequestDto{" +
-                "firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "UserSignUpRequestDto{" + "firstName='" + firstName + '\'' + ", secondName='" + secondName + '\'' + ", userName='" + userName + '\'' + ", password='" + password + '\'' + '}';
     }
 }

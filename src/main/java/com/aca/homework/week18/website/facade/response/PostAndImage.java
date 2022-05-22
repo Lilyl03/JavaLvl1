@@ -1,7 +1,6 @@
 package com.aca.homework.week18.website.facade.response;
 
 
-
 import com.aca.homework.week18.website.entity.Image;
 import com.aca.homework.week18.website.entity.Post;
 
@@ -9,9 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PostAndImage {
-    private
-    Post post;
+    private Post post;
     private List<Image> images;
+
+    public PostAndImage(Post post, List<Image> images) {
+        this.post = post;
+        this.images = images;
+    }
 
     public Post getPost() {
         return post;
@@ -29,15 +32,8 @@ public class PostAndImage {
         this.images = images;
     }
 
-    public PostAndImage(Post post, List<Image> images) {
-        this.post = post;
-        this.images = images;
-    }
-
     @Override
     public String toString() {
-        return  post +
-                ", images=" + Arrays.toString(images.toArray()) +
-                '}';
+        return post + ", images=" + Arrays.toString(images.toArray()) + '}';
     }
 }

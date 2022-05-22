@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface PostService {
     Post create(CreatePostParams params);
+
     Post getById(Long id);
+
     List<Post> getAllById(Long id);
 }
