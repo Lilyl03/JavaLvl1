@@ -1,0 +1,18 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.datasource.url=jdbc:postgresql://localhost:8432/postgres\nspring.datasource.username = postgres\nspring.datasource.password =\nspring.jpa.show-sql = true\nspring.jpa.hibernate.ddl-auto=create\n
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	
++++ b/src/main/resources/application.properties	
+@@ -1,5 +1,8 @@
+ spring.datasource.url=jdbc:postgresql://localhost:8432/postgres
+ spring.datasource.username = postgres
+ spring.datasource.password =
++
+ spring.jpa.show-sql = true
+ spring.jpa.hibernate.ddl-auto=create
++
++university.username.prefix = YSU
+\ No newline at end of file

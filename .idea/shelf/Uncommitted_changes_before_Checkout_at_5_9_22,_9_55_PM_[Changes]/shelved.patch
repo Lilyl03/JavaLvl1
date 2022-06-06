@@ -1,0 +1,185 @@
+Index: src/main/java/com/aca/homework/week18/website/facade/impl/UserFacadeImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.facade.impl;\n\nimport com.aca.homework.week18.website.entity.User;\nimport com.aca.homework.week18.website.facade.core.UserFacade;\nimport com.aca.homework.week18.website.facade.request.UserSignUpRequestDto;\nimport com.aca.homework.week18.website.facade.response.UserSignUpResponseDto;\nimport com.aca.homework.week18.website.repository.UserRepository;\nimport com.aca.homework.week18.website.service.core.params.CreateUserParams;\nimport com.aca.homework.week18.website.service.impl.UserServiceImpl;\n\npublic class UserFacadeImpl implements UserFacade {\n    private UserRepository userRepository;\n\n    @Override\n    public UserSignUpResponseDto signUp(UserSignUpRequestDto dto) {\n        if(userRepository.findByFirstNameAndSecondNameAndUsername().isPresent()){\n            throw new RuntimeException(\"The user already exists\");\n        }\n        User user = new UserServiceImpl().create(\n                new CreateUserParams(\n                        dto.getFirstName(),\n                        dto.getSecondName(),\n                        dto.getUsername(),\n                        dto.getPassword()));\n        return new UserSignUpResponseDto(user.getUsername(),user.getFirstName(),user.getSecondName());\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/facade/impl/UserFacadeImpl.java b/src/main/java/com/aca/homework/week18/website/facade/impl/UserFacadeImpl.java
+--- a/src/main/java/com/aca/homework/week18/website/facade/impl/UserFacadeImpl.java	
++++ b/src/main/java/com/aca/homework/week18/website/facade/impl/UserFacadeImpl.java	
+@@ -11,12 +11,13 @@
+ public class UserFacadeImpl implements UserFacade {
+     private UserRepository userRepository;
+ 
++    public UserFacadeImpl(UserRepository userRepository) {
++        this.userRepository = userRepository;
++    }
++
+     @Override
+     public UserSignUpResponseDto signUp(UserSignUpRequestDto dto) {
+-        if(userRepository.findByFirstNameAndSecondNameAndUsername().isPresent()){
+-            throw new RuntimeException("The user already exists");
+-        }
+-        User user = new UserServiceImpl().create(
++        User user = new UserServiceImpl(userRepository).create(
+                 new CreateUserParams(
+                         dto.getFirstName(),
+                         dto.getSecondName(),
+Index: src/main/java/com/aca/homework/week18/website/facade/impl/PostFacadeImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.facade.impl;\n\nimport com.aca.homework.week18.website.entity.Image;\nimport com.aca.homework.week18.website.entity.Post;\nimport com.aca.homework.week18.website.entity.User;\nimport com.aca.homework.week18.website.facade.core.PostFacade;\nimport com.aca.homework.week18.website.facade.request.ImageCreationrequestDto;\nimport com.aca.homework.week18.website.facade.request.PostCreationRequestDto;\nimport com.aca.homework.week18.website.facade.response.ImageCreationResponseDto;\nimport com.aca.homework.week18.website.facade.response.PostCreationResponseDto;\nimport com.aca.homework.week18.website.facade.response.UserSignUpResponseDto;\nimport com.aca.homework.week18.website.repository.ImageRepository;\nimport com.aca.homework.week18.website.repository.PostRepository;\nimport com.aca.homework.week18.website.service.core.params.CreateImageParams;\nimport com.aca.homework.week18.website.service.core.params.CreatePostParams;\nimport com.aca.homework.week18.website.service.impl.ImageServiceImpl;\nimport com.aca.homework.week18.website.service.impl.PostServiceImpl;\n\nimport java.util.Collections;\nimport java.util.List;\n\npublic class PostFacadeImpl implements PostFacade {\n    private ImageRepository imageRepository;\n    private PostRepository postRepository;\n\n    private UserSignUpResponseDto userSignUpResponseDto;\n    @Override\n    public PostCreationResponseDto create(PostCreationRequestDto dto) {\n        Post post = new PostServiceImpl().create(new CreatePostParams(dto.getTitle(), dto.getDescription(), dto.getImages()));\n        return new PostCreationResponseDto(post);\n    }\n\n\n\n    @Override\n    public PostCreationResponseDto getAllUserPosts(PostCreationRequestDto dto) {\n        User user = dto.getUser();\n        List<Post> posts = postRepository.findAllById(Collections.singleton(user.getId()));\n        return new PostCreationResponseDto(user, posts);\n    }\n\n    @Override\n    public ImageCreationResponseDto uploadImage(ImageCreationrequestDto dto) {\n        if(imageRepository.countByPostId() >5){\n            throw new RuntimeException(\"The maximum count of images must be 5\");\n        }\n        Image image = new ImageServiceImpl().create(new CreateImageParams(dto.getBlobId(), dto.getPostId()));\n        return new ImageCreationResponseDto(image);\n    }\n\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/facade/impl/PostFacadeImpl.java b/src/main/java/com/aca/homework/week18/website/facade/impl/PostFacadeImpl.java
+--- a/src/main/java/com/aca/homework/week18/website/facade/impl/PostFacadeImpl.java	
++++ b/src/main/java/com/aca/homework/week18/website/facade/impl/PostFacadeImpl.java	
+@@ -26,7 +26,7 @@
+     private UserSignUpResponseDto userSignUpResponseDto;
+     @Override
+     public PostCreationResponseDto create(PostCreationRequestDto dto) {
+-        Post post = new PostServiceImpl().create(new CreatePostParams(dto.getTitle(), dto.getDescription(), dto.getImages()));
++        Post post = new PostServiceImpl(postRepository).create(new CreatePostParams(dto.getTitle(), dto.getDescription(), dto.getImages()));
+         return new PostCreationResponseDto(post);
+     }
+ 
+@@ -41,10 +41,10 @@
+ 
+     @Override
+     public ImageCreationResponseDto uploadImage(ImageCreationrequestDto dto) {
+-        if(imageRepository.countByPostId() >5){
++        if(imageRepository.countByPostId(dto.getPostId()) >5){
+             throw new RuntimeException("The maximum count of images must be 5");
+         }
+-        Image image = new ImageServiceImpl().create(new CreateImageParams(dto.getBlobId(), dto.getPostId()));
++        Image image = new ImageServiceImpl(imageRepository).create(new CreateImageParams(dto.getBlobId(), dto.getPostId()));
+         return new ImageCreationResponseDto(image);
+     }
+ 
+Index: src/main/java/com/aca/homework/week18/website/repository/ImageRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.repository;\n\nimport com.aca.homework.week18.website.entity.Image;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport org.springframework.stereotype.Repository;\n\n@Repository\npublic interface ImageRepository extends JpaRepository<Image,Long> {\n    long countByPostId();\n\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/repository/ImageRepository.java b/src/main/java/com/aca/homework/week18/website/repository/ImageRepository.java
+--- a/src/main/java/com/aca/homework/week18/website/repository/ImageRepository.java	
++++ b/src/main/java/com/aca/homework/week18/website/repository/ImageRepository.java	
+@@ -6,6 +6,6 @@
+ 
+ @Repository
+ public interface ImageRepository extends JpaRepository<Image,Long> {
+-    long countByPostId();
++    long countByPostId(Long postId);
+ 
+ }
+Index: src/main/java/com/aca/homework/week18/website/service/impl/UserServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.service.impl;\n\nimport com.aca.homework.week18.website.entity.User;\nimport com.aca.homework.week18.website.repository.UserRepository;\nimport com.aca.homework.week18.website.service.core.UserService;\nimport com.aca.homework.week18.website.service.core.params.CreateUserParams;\nimport org.springframework.data.domain.Example;\n\npublic class UserServiceImpl implements UserService {\n    private UserRepository userRepository;\n    @Override\n    public User create(CreateUserParams params) {\n        User user = new User(params.getFirstName(), params.getSecondName(), params.getUsername(), params.getPassword());\n        userRepository.save(user);\n        return user;\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/service/impl/UserServiceImpl.java b/src/main/java/com/aca/homework/week18/website/service/impl/UserServiceImpl.java
+--- a/src/main/java/com/aca/homework/week18/website/service/impl/UserServiceImpl.java	
++++ b/src/main/java/com/aca/homework/week18/website/service/impl/UserServiceImpl.java	
+@@ -7,10 +7,17 @@
+ import org.springframework.data.domain.Example;
+ 
+ public class UserServiceImpl implements UserService {
++    public UserServiceImpl(UserRepository userRepository) {
++        this.userRepository = userRepository;
++    }
++
+     private UserRepository userRepository;
+     @Override
+     public User create(CreateUserParams params) {
+         User user = new User(params.getFirstName(), params.getSecondName(), params.getUsername(), params.getPassword());
++        if(userRepository.findByFirstNameAndSecondNameAndUsername(params.getFirstName(), params.getSecondName(), params.getUsername()).equals(user)){
++            throw new RuntimeException("User already exists");
++        }
+         userRepository.save(user);
+         return user;
+     }
+Index: src/main/java/com/aca/homework/week18/website/repository/UserRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.repository;\n\nimport com.aca.homework.week18.website.entity.User;\nimport org.springframework.data.domain.Example;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport org.springframework.stereotype.Repository;\n\nimport java.util.Optional;\n\n@Repository\npublic interface UserRepository extends JpaRepository<User, Long> {\n    Optional<User> findByFirstNameAndSecondNameAndUsername();\n\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/repository/UserRepository.java b/src/main/java/com/aca/homework/week18/website/repository/UserRepository.java
+--- a/src/main/java/com/aca/homework/week18/website/repository/UserRepository.java	
++++ b/src/main/java/com/aca/homework/week18/website/repository/UserRepository.java	
+@@ -9,6 +9,6 @@
+ 
+ @Repository
+ public interface UserRepository extends JpaRepository<User, Long> {
+-    Optional<User> findByFirstNameAndSecondNameAndUsername();
++    Optional<User> findByFirstNameAndSecondNameAndUsername(String firstName,String secondName, String username);
+ 
+ }
+Index: src/main/java/com/aca/homework/week18/website/entity/Post.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.entity;\n\nimport org.springframework.boot.convert.DataSizeUnit;\nimport org.springframework.boot.convert.Delimiter;\n\nimport javax.persistence.*;\nimport java.util.List;\n\n@Entity\n@Table(name = \"POSTS\")\npublic class Post {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.AUTO)\n    private Long id;\n\n    @Column(name = \"title\")\n    private String title;\n\n    @Column(name = \"description\")\n    private String description;\n\n\n    @Column(name = \"image\")\n    private List<Image> images;\n\n    public Post(String title, String description, List<Image> images) {\n        this.title = title;\n        this.description = description;\n        this.images = images;\n    }\n\n    public Long getId() {\n        return id;\n    }\n\n    public String getTitle() {\n        return title;\n    }\n\n    public void setTitle(String title) {\n        this.title = title;\n    }\n\n    public String getDescription() {\n        return description;\n    }\n\n    public void setDescription(String description) {\n        this.description = description;\n    }\n\n    public List<Image> getImages() {\n        return images;\n    }\n\n    public void setImages(List<Image> images) {\n        this.images = images;\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/entity/Post.java b/src/main/java/com/aca/homework/week18/website/entity/Post.java
+--- a/src/main/java/com/aca/homework/week18/website/entity/Post.java	
++++ b/src/main/java/com/aca/homework/week18/website/entity/Post.java	
+@@ -21,7 +21,7 @@
+     private String description;
+ 
+ 
+-    @Column(name = "image")
++    @ManyToOne(targetEntity = Image.class)
+     private List<Image> images;
+ 
+     public Post(String title, String description, List<Image> images) {
+Index: src/main/java/com/aca/homework/week18/website/service/impl/ImageServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.service.impl;\n\nimport com.aca.homework.week18.website.entity.Image;\nimport com.aca.homework.week18.website.repository.ImageRepository;\nimport com.aca.homework.week18.website.service.core.ImageService;\nimport com.aca.homework.week18.website.service.core.params.CreateImageParams;\n\npublic class ImageServiceImpl implements ImageService {\n    ImageRepository imageRepository;\n    @Override\n    public Image create(CreateImageParams params) {\n        Image image = new Image(params.getBlobId(),params.getPostId());\n        imageRepository.save(image);\n        return image;\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/service/impl/ImageServiceImpl.java b/src/main/java/com/aca/homework/week18/website/service/impl/ImageServiceImpl.java
+--- a/src/main/java/com/aca/homework/week18/website/service/impl/ImageServiceImpl.java	
++++ b/src/main/java/com/aca/homework/week18/website/service/impl/ImageServiceImpl.java	
+@@ -7,6 +7,11 @@
+ 
+ public class ImageServiceImpl implements ImageService {
+     ImageRepository imageRepository;
++
++    public ImageServiceImpl(ImageRepository imageRepository) {
++        this.imageRepository = imageRepository;
++    }
++
+     @Override
+     public Image create(CreateImageParams params) {
+         Image image = new Image(params.getBlobId(),params.getPostId());
+Index: src/main/java/com/aca/homework/week18/website/repository/PostRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.repository;\n\nimport com.aca.homework.week18.website.entity.Post;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport org.springframework.stereotype.Repository;\n\nimport java.util.List;\n\n@Repository\npublic interface PostRepository extends JpaRepository<Post, Long> {\n\n    long countByImages();\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/repository/PostRepository.java b/src/main/java/com/aca/homework/week18/website/repository/PostRepository.java
+--- a/src/main/java/com/aca/homework/week18/website/repository/PostRepository.java	
++++ b/src/main/java/com/aca/homework/week18/website/repository/PostRepository.java	
+@@ -9,5 +9,4 @@
+ @Repository
+ public interface PostRepository extends JpaRepository<Post, Long> {
+ 
+-    long countByImages();
+ }
+Index: src/main/java/com/aca/homework/week18/website/service/impl/PostServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week18.website.service.impl;\n\nimport com.aca.homework.week18.website.entity.Post;\nimport com.aca.homework.week18.website.repository.PostRepository;\nimport com.aca.homework.week18.website.service.core.PostService;\nimport com.aca.homework.week18.website.service.core.params.CreatePostParams;\n\npublic class PostServiceImpl implements PostService {\n    private PostRepository postRepository;\n    @Override\n    public Post create(CreatePostParams params) {\n        Post post = new Post(params.getTitle(), params.getDescription(),params.getImages());\n        postRepository.save(post);\n        return post;\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week18/website/service/impl/PostServiceImpl.java b/src/main/java/com/aca/homework/week18/website/service/impl/PostServiceImpl.java
+--- a/src/main/java/com/aca/homework/week18/website/service/impl/PostServiceImpl.java	
++++ b/src/main/java/com/aca/homework/week18/website/service/impl/PostServiceImpl.java	
+@@ -7,6 +7,11 @@
+ 
+ public class PostServiceImpl implements PostService {
+     private PostRepository postRepository;
++
++    public PostServiceImpl(PostRepository postRepository) {
++        this.postRepository = postRepository;
++    }
++
+     @Override
+     public Post create(CreatePostParams params) {
+         Post post = new Post(params.getTitle(), params.getDescription(),params.getImages());

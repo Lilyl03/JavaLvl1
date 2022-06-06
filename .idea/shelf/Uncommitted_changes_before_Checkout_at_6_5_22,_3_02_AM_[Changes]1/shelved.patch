@@ -1,0 +1,243 @@
+Index: src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java
+===================================================================
+diff --git a/src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java b/src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java
+deleted file mode 100644
+--- a/src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java	
++++ /dev/null	
+@@ -1,29 +0,0 @@
+-package main.com.aca.homework.week9.generic.queue;
+-
+-public class Queue<T> {
+-    private static int cnt = -1;
+-    private Object[] array = new Object[10_000];
+-
+-    public int getCnt() {
+-        return cnt;
+-    }
+-
+-    public void produce(T object) {
+-        if (object != null) {
+-            array[++cnt] = object;
+-        } else {
+-            throw new IllegalArgumentException();
+-        }
+-    }
+-
+-    public T consume() {
+-        if (cnt == -1) {
+-            throw new QueueEmptyException();
+-        }
+-        T consumed = (T) array[cnt];
+-        array[cnt--] = null;
+-        return consumed;
+-
+-    }
+-
+-}
+Index: src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt
+===================================================================
+diff --git a/src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt b/src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt
+deleted file mode 100644
+--- a/src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt	
++++ /dev/null	
+@@ -1,28 +0,0 @@
+-Create a Queue generic class that will encapsulate an array of type Object[].
+-
+-The Queue class has the following methods
+-
+-void produce(T object);
+-
+-T consume();
+-
+-When the produce method is invoked, the object should be added to an Object[] array.
+-
+-When the consume is invoked, the latest added object should be casted to T type and returned.
+-
+-The encapsulated array should have 10_000 size.
+-
+-When the array is empty and consume method is invoked, the QueueEmptyException should be thrown.
+-
+-Write the following unit tests in QueueTest class:
+-
+-the testSubject should have type of Queue<String>
+-
+-testWhenProduceIsNull() //Illegal argument exception should be thrown
+-
+-testConsumeWhenContains1Item() // produce a string "test", consume it and assert that is equal to "test"
+-
+-testConsumeWhenQueueIsEmpty()
+-
+-testConsume2TimesWhenQueueContains2Items()
+-
+Index: src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java
+===================================================================
+diff --git a/src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java b/src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java
+deleted file mode 100644
+--- a/src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java	
++++ /dev/null	
+@@ -1,7 +0,0 @@
+-package main.com.aca.homework.week9.generic.queue;
+-
+-public class QueueEmptyException extends RuntimeException {
+-    public QueueEmptyException() {
+-        super("The Queue is empty");
+-    }
+-}
+Index: src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java
+===================================================================
+diff --git a/src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java b/src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java
+deleted file mode 100644
+--- a/src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java	
++++ /dev/null	
+@@ -1,53 +0,0 @@
+-package main.com.aca.homework.week9.generic.queue;
+-
+-
+-import org.junit.jupiter.api.Assertions;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-import org.junit.jupiter.api.function.Executable;
+-
+-class QueueTest {
+-    private Queue<String> testSubject;
+-
+-    @BeforeEach
+-    public void setUp() {
+-        testSubject = new Queue<String>();
+-    }
+-
+-    @Test
+-    public void testWhenProduceIsNull() {
+-        Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+-            @Override
+-            public void execute() throws Throwable {
+-                testSubject.produce(null);
+-            }
+-        });
+-    }
+-
+-    @Test
+-    public void testConsumeWhenContains1Item() {
+-        testSubject.produce("test");
+-        Assertions.assertEquals("test", testSubject.consume());
+-
+-    }
+-
+-    @Test
+-    public void testConsumeWhenQueueIsEmpty() {
+-        Assertions.assertThrows(QueueEmptyException.class, new Executable() {
+-            @Override
+-            public void execute() throws Throwable {
+-                testSubject.consume();
+-            }
+-        });
+-
+-    }
+-
+-    @Test
+-    public void testConsume2TimesWhenQueueContains2Items() {
+-        testSubject.produce("test1");
+-        testSubject.produce("test2");
+-        Assertions.assertEquals("test2", testSubject.consume());
+-        Assertions.assertEquals("test1", testSubject.consume());
+-        Assertions.assertEquals(-1, testSubject.getCnt());
+-    }
+-}
+\ No newline at end of file
+Index: src/test/java/com/aca/homework/week14/objectmapper/CommitAnalyzerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week14.objectmapper;\n\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.Assertions;\nimport org.junit.jupiter.api.BeforeEach;\n\n\nimport java.io.IOException;\nimport java.util.function.Supplier;\n\nimport static org.junit.jupiter.api.Assertions.*;\n\nclass CommitAnalyzerTest {\n    public CommitAnalyzer testSubject;\n    @BeforeEach\n    public void init(){\n        testSubject = new CommitAnalyzer(new Supplier<String>() {\n            @Override\n            public String get() {\n                return \"/home/luser/IdeaProjects/JavaLvl1/src/main/java/com/aca/homework/week14/objectmapper/commits-data.json\";\n            }\n        });\n    }\n\n\n    @Test\n    public void testCount() throws IOException {\n        Assertions.assertEquals(301,testSubject.count());\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/com/aca/homework/week14/objectmapper/CommitAnalyzerTest.java b/src/test/java/com/aca/homework/week14/objectmapper/CommitAnalyzerTest.java
+--- a/src/test/java/com/aca/homework/week14/objectmapper/CommitAnalyzerTest.java	
++++ b/src/test/java/com/aca/homework/week14/objectmapper/CommitAnalyzerTest.java	
+@@ -1,31 +1,31 @@
+-package com.aca.homework.week14.objectmapper;
+-
+-import org.junit.jupiter.api.Test;
+-import org.junit.jupiter.api.Assertions;
+-import org.junit.jupiter.api.BeforeEach;
+-
+-
+-import java.io.IOException;
+-import java.util.function.Supplier;
+-
+-import static org.junit.jupiter.api.Assertions.*;
+-
+-class CommitAnalyzerTest {
+-    public CommitAnalyzer testSubject;
+-    @BeforeEach
+-    public void init(){
+-        testSubject = new CommitAnalyzer(new Supplier<String>() {
+-            @Override
+-            public String get() {
+-                return "/home/luser/IdeaProjects/JavaLvl1/src/main/java/com/aca/homework/week14/objectmapper/commits-data.json";
+-            }
+-        });
+-    }
+-
+-
+-    @Test
+-    public void testCount() throws IOException {
+-        Assertions.assertEquals(301,testSubject.count());
+-    }
+-
+-}
+\ No newline at end of file
++//package com.aca.homework.week14.objectmapper;
++//
++//import org.junit.jupiter.api.Test;
++//import org.junit.jupiter.api.Assertions;
++//import org.junit.jupiter.api.BeforeEach;
++//
++//
++//import java.io.IOException;
++//import java.util.function.Supplier;
++//
++//import static org.junit.jupiter.api.Assertions.*;
++//
++//class CommitAnalyzerTest {
++//    public CommitAnalyzer testSubject;
++//    @BeforeEach
++//    public void init(){
++//        testSubject = new CommitAnalyzer(new Supplier<String>() {
++//            @Override
++//            public String get() {
++//                return "/home/luser/IdeaProjects/JavaLvl1/src/main/java/com/aca/homework/week14/objectmapper/commits-data.json";
++//            }
++//        });
++//    }
++//
++//
++//    @Test
++//    public void testCount() throws IOException {
++//        Assertions.assertEquals(301,testSubject.count());
++//    }
++//
++//}
+\ No newline at end of file
+Index: src/main/java/com/aca/homework/week15/log/LoggerMain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week15.log;\n\nimport com.sun.jdi.PathSearchingVirtualMachine;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\npublic class LoggerMain {\n    private static final Logger LOGGER = LoggerFactory.getLogger(LoggerMain.class);\n\n    public static void main(String[] args) {\n        LOGGER.debug(\"Hello SLF4J!\");\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week15/log/LoggerMain.java b/src/main/java/com/aca/homework/week15/log/LoggerMain.java
+--- a/src/main/java/com/aca/homework/week15/log/LoggerMain.java	
++++ b/src/main/java/com/aca/homework/week15/log/LoggerMain.java	
+@@ -1,8 +1,10 @@
+ package com.aca.homework.week15.log;
+ 
+ import com.sun.jdi.PathSearchingVirtualMachine;
+-import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
++import org.slf4j.Logger;
++
++
+ 
+ public class LoggerMain {
+     private static final Logger LOGGER = LoggerFactory.getLogger(LoggerMain.class);

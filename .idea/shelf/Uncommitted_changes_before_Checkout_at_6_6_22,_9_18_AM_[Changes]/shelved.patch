@@ -1,0 +1,16 @@
+Index: src/main/java/com/aca/homework/week19/job_platform/entity/Invitation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aca.homework.week19.job_platform.entity;\n\nimport javax.persistence.*;\n\n@Entity\n@Table(name = \"INVITATIONS\")\npublic class Invitation {\n    @Id\n    @SequenceGenerator(name = \"invitation_sequence\", sequenceName = \"invitation_sequence\")\n    @GeneratedValue(generator = \"invitation_sequence\", strategy = GenerationType.AUTO)\n    private Long id;\n\n    @Column(name = \"description\", nullable = false)\n    private String description;\n\n    @Column(name = \"invitation_status\")\n    private InvitationStatus invitationStatus;\n\n    public Invitation(String description) {\n        this.description = description;\n    }\n\n    public Long getId() {\n        return id;\n    }\n\n    public String getDescription() {\n        return description;\n    }\n\n    public void setDescription(String description) {\n        this.description = description;\n    }\n\n    public void setInvitationStatus(InvitationStatus invitationStatus) {\n        this.invitationStatus = invitationStatus;\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/aca/homework/week19/job_platform/entity/Invitation.java b/src/main/java/com/aca/homework/week19/job_platform/entity/Invitation.java
+--- a/src/main/java/com/aca/homework/week19/job_platform/entity/Invitation.java	
++++ b/src/main/java/com/aca/homework/week19/job_platform/entity/Invitation.java	
+@@ -16,6 +16,7 @@
+     @Column(name = "invitation_status")
+     private InvitationStatus invitationStatus;
+ 
++
+     public Invitation(String description) {
+         this.description = description;
+     }

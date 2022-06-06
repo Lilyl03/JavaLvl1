@@ -1,0 +1,173 @@
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'org.springframework.boot' version '2.6.6'\n    id 'io.spring.dependency-management' version '1.0.11.RELEASE'\n    id 'java'\n}\n\ngroup 'com.aca'\nversion '1.0-SNAPSHOT'\n\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'\n    testImplementation 'org.springframework.boot:spring-boot-starter-test'\n    implementation 'org.springframework.boot:spring-boot-starter-web'\n    implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.4'\n}\n\ntest {\n    useJUnitPlatform()\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	
++++ b/build.gradle	
+@@ -10,6 +10,7 @@
+ 
+ repositories {
+     mavenCentral()
++
+ }
+ 
+ dependencies {
+@@ -17,6 +18,8 @@
+     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+     implementation 'org.springframework.boot:spring-boot-starter-web'
+     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.4'
++
++
+ }
+ 
+ test {
+Index: src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java
+===================================================================
+diff --git a/src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java b/src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java
+deleted file mode 100644
+--- a/src/main/java/main/com/aca/homework/week9/generic/queue/Queue.java	
++++ /dev/null	
+@@ -1,29 +0,0 @@
+-package main.com.aca.homework.week9.generic.queue;
+-
+-public class Queue<T> {
+-    private static int cnt = -1;
+-    private Object[] array = new Object[10_000];
+-
+-    public int getCnt() {
+-        return cnt;
+-    }
+-
+-    public void produce(T object) {
+-        if (object != null) {
+-            array[++cnt] = object;
+-        } else {
+-            throw new IllegalArgumentException();
+-        }
+-    }
+-
+-    public T consume() {
+-        if (cnt == -1) {
+-            throw new QueueEmptyException();
+-        }
+-        T consumed = (T) array[cnt];
+-        array[cnt--] = null;
+-        return consumed;
+-
+-    }
+-
+-}
+Index: src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt
+===================================================================
+diff --git a/src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt b/src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt
+deleted file mode 100644
+--- a/src/main/java/main/com/aca/homework/week9/generic/queue/queue.txt	
++++ /dev/null	
+@@ -1,28 +0,0 @@
+-Create a Queue generic class that will encapsulate an array of type Object[].
+-
+-The Queue class has the following methods
+-
+-void produce(T object);
+-
+-T consume();
+-
+-When the produce method is invoked, the object should be added to an Object[] array.
+-
+-When the consume is invoked, the latest added object should be casted to T type and returned.
+-
+-The encapsulated array should have 10_000 size.
+-
+-When the array is empty and consume method is invoked, the QueueEmptyException should be thrown.
+-
+-Write the following unit tests in QueueTest class:
+-
+-the testSubject should have type of Queue<String>
+-
+-testWhenProduceIsNull() //Illegal argument exception should be thrown
+-
+-testConsumeWhenContains1Item() // produce a string "test", consume it and assert that is equal to "test"
+-
+-testConsumeWhenQueueIsEmpty()
+-
+-testConsume2TimesWhenQueueContains2Items()
+-
+Index: src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java
+===================================================================
+diff --git a/src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java b/src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java
+deleted file mode 100644
+--- a/src/main/java/main/com/aca/homework/week9/generic/queue/QueueEmptyException.java	
++++ /dev/null	
+@@ -1,7 +0,0 @@
+-package main.com.aca.homework.week9.generic.queue;
+-
+-public class QueueEmptyException extends RuntimeException {
+-    public QueueEmptyException() {
+-        super("The Queue is empty");
+-    }
+-}
+Index: src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java
+===================================================================
+diff --git a/src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java b/src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java
+deleted file mode 100644
+--- a/src/main/java/test/main/com/aca/homework/week9/generic/queue/QueueTest.java	
++++ /dev/null	
+@@ -1,53 +0,0 @@
+-package main.com.aca.homework.week9.generic.queue;
+-
+-
+-import org.junit.jupiter.api.Assertions;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-import org.junit.jupiter.api.function.Executable;
+-
+-class QueueTest {
+-    private Queue<String> testSubject;
+-
+-    @BeforeEach
+-    public void setUp() {
+-        testSubject = new Queue<String>();
+-    }
+-
+-    @Test
+-    public void testWhenProduceIsNull() {
+-        Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+-            @Override
+-            public void execute() throws Throwable {
+-                testSubject.produce(null);
+-            }
+-        });
+-    }
+-
+-    @Test
+-    public void testConsumeWhenContains1Item() {
+-        testSubject.produce("test");
+-        Assertions.assertEquals("test", testSubject.consume());
+-
+-    }
+-
+-    @Test
+-    public void testConsumeWhenQueueIsEmpty() {
+-        Assertions.assertThrows(QueueEmptyException.class, new Executable() {
+-            @Override
+-            public void execute() throws Throwable {
+-                testSubject.consume();
+-            }
+-        });
+-
+-    }
+-
+-    @Test
+-    public void testConsume2TimesWhenQueueContains2Items() {
+-        testSubject.produce("test1");
+-        testSubject.produce("test2");
+-        Assertions.assertEquals("test2", testSubject.consume());
+-        Assertions.assertEquals("test1", testSubject.consume());
+-        Assertions.assertEquals(-1, testSubject.getCnt());
+-    }
+-}
+\ No newline at end of file
